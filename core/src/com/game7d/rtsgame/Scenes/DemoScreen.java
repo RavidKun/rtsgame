@@ -22,6 +22,7 @@ public class DemoScreen implements Screen {
 
     private int mapWidth;
     private int mapHeight;
+    private Controller contraller;
 
     public DemoScreen(rtsgame game) {
         this.game = game;
@@ -32,7 +33,7 @@ public class DemoScreen implements Screen {
         gamePort = new FitViewport(mapWidth,mapHeight,gamecam);
         gamecam.position.set(0,0,0);
         backdeltaX=0;
-
+        contraller = new Controller(game.batch);
     }
 
     public void handleInput(float dt) {
@@ -89,6 +90,7 @@ public class DemoScreen implements Screen {
         game.batch.begin();
         game.batch.draw(texture,-256/2,-256/2);
         game.batch.end();
+        contraller.stage.draw();
     }
 
 
@@ -96,7 +98,7 @@ public class DemoScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         gamePort.update(width,height);
-
+        contraller.resize(width, height);
 
 
     }
